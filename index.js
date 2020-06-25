@@ -1,4 +1,5 @@
 const playwright = require('playwright');
+const fs = require('fs');
 require('dotenv').config();
 
 
@@ -21,7 +22,7 @@ require('dotenv').config();
       await page.type("[name=username]", myid);
       await page.type('[type="password"]', mypass);
       await page.click("[type=submit]");
-      await page.waitForTimeout(10000);
+      await page.waitForTimeout(4000);
       await page.goto(`https://www.instagram.com/belalthecoolboy`);
       await page.waitForTimeout(5000);
     // await page.screenshot({path: `ea-${fullDay}.png`});
@@ -40,6 +41,19 @@ require('dotenv').config();
 
     console.log(data);
     
+    // fs.writeFile('newfile.txt', data ,  (err , data) => {
+    //     if (err) throw err;
+    //     console.log('saved!');
+        
+    // } );
+
+
+
+    fs.appendFile('mynewfile1.txt', data , function (err) {
+        if (err) throw err;
+        console.log('Updated!');
+      });
+
 
     await browser.close();
     console.log(fullDay);
